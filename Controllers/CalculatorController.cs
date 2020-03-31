@@ -22,11 +22,7 @@ namespace MeanMedianMode.Controllers
         public Calculation Get(string nums)
         {
             //Parse input into List<int>
-            var l2 = nums.Split(",").ToList();
-
-            var list = l2.Where(x => x != "").Select(int.Parse).ToList();
-
-            //List<int> list = nums.Split(",").Select(int.Parse).ToList();
+            List<int> list = nums.Split(",").Select(int.Parse).ToList();
 
             //Call methods to find Mean, Median, Mode, and create and return new Calculation Value 
             return new Calculation() { Mean = Average(list), Median = Median(list), Mode = Mode(list) };
