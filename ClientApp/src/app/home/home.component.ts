@@ -10,9 +10,6 @@ export class HomeComponent {
   public baseUrl: string;
 
   public calculation: Calculation;
-  public mean: number;
-  public median: number;
-  public mode: number;
 
   public inputNumbers: string;
 
@@ -22,9 +19,6 @@ export class HomeComponent {
 
       this.http.get<Calculation>(this.baseUrl + 'calculator?nums=' + this.inputNumbers).subscribe(result => {
         this.calculation = result;
-        this.mean = this.calculation.mean;
-        this.median = this.calculation.median;
-        this.mode = this.calculation.mode;
       }, error => console.error(error));
     }
     else {
