@@ -8,8 +8,9 @@
     </form>
 </div>
 
-<p aria-live="polite">Mean: <strong>{{ calculation.mean }}</strong></p>
-
-<p aria-live="polite">Median: <strong>{{ calculation.median }}</strong></p>
-
-<p aria-live="polite">Mode: <strong>{{ calculation.mode }}</strong></p>
+<p aria-live="polite" *ngIf="calculation.mean !== null">Mean: <strong>{{ calculation.mean }}</strong></p>
+<p aria-live="polite" *ngIf="calculation.median !== null">Median: <strong>{{ calculation.median }}</strong></p>
+<p aria-live="polite" *ngIf="calculation.mode === null">No Mode</p>
+<p aria-live="polite" *ngIf="calculation.mode !== null && calculation.mode.length === 1">Mode: <strong>{{ calculation.mode }}</strong></p>
+<p aria-live="polite" *ngIf="calculation.mode !== null && calculation.mode.length === 2">Bimodal: <strong>{{ calculation.mode }}</strong></p>
+<p aria-live="polite" *ngIf="calculation.mode !== null && calculation.mode.length > 2">Multimodal: <strong>{{ calculation.mode }}</strong></p>

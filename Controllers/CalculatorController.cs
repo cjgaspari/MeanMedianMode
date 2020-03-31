@@ -22,19 +22,24 @@ namespace MeanMedianMode.Controllers
         public Calculation Get(string nums)
         {
             //Parse input into List<int>
-            List<int> list = nums.Split(",").Select(int.Parse).ToList();
+            List<double> list = nums.Split(",").Select(double.Parse).ToList();
 
             //Call methods to find Mean, Median, Mode, and create and return new Calculation Value 
-            return new Calculation() { Mean = Average(list), Median = Median(list), Mode = Mode(list) };
+            return new Calculation()
+            {
+                Mean = Average(list),
+                Median = Median(list),
+                Mode = Mode(list)
+            };
         }
 
-        private double Average(List<int> numbers)
+        private double Average(List<double> numbers)
         {
             //Return average using built in List method for Average 
             return numbers.Average();
         }
 
-        private double Median(List<int> numbers)
+        private double Median(List<double> numbers)
         {
             //Sort numbers using built in List method for Sort 
             numbers.Sort();
@@ -43,7 +48,7 @@ namespace MeanMedianMode.Controllers
             return numbers[numbers.Count() / 2];
         }
 
-        private double Mode(List<int> numbers)
+        private double?[] Mode(List<double> numbers)
         {
             //Group numbers using Linq to get number and associated count
             var groupedNumbers = numbers.GroupBy(value => value);
@@ -51,9 +56,14 @@ namespace MeanMedianMode.Controllers
             //Get the max of the grouping count 
             int maxGroupCount = groupedNumbers.Max(group => group.Count());
 
+            //If numbers has more than 1 value, and the max count == 1, then all values are unique so no mode
+            if(maxGroupCount == 1 && numbers.Count() > 1)
+            {
+                return null;
+            }
 
-            //Return the first number where the grouping count equals the max
-            return groupedNumbers.First(group => group.Count() == maxGroupCount).Key;
+            //Return array of numbers where the grouping count equals the max
+            return groupedNumbers.Where(group => group.Count() == maxGroupCount).Select(x => x.Key as double?).ToArray();
         }
 
     }

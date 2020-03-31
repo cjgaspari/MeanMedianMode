@@ -35,5 +35,5 @@ export class HomeComponent {
 interface Calculation {
   mean: number;
   median: number;
-  mode: number;
+  mode: number[];
 }
