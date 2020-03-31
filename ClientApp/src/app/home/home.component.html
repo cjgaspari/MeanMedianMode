@@ -1,0 +1,15 @@
+<h1>Calculate the Mean, Median, and Mode</h1>
+
+<p>Input a list of numbers, seperated by comma.</p>
+
+<div>
+    <form>
+        <input name='numInput' #numInput='ngModel' ngModel type="text" pattern="(^$)|(^(\d+)(,\s*\d+)*$)" (keyup.enter)="OnInput($event)" required />
+    </form>
+</div>
+
+<p aria-live="polite">Mean: <strong>{{ mean }}</strong></p>
+
+<p aria-live="polite">Median: <strong>{{ median }}</strong></p>
+
+<p aria-live="polite">Mode: <strong>{{ mode }}</strong></p>
