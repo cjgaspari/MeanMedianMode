@@ -18,7 +18,7 @@ namespace MeanMedianMode.Controllers
             _logger = logger;
         }
 
-        [HttpGet] //("numbersCommaString")
+        [HttpGet]
         public Calculation Get(string nums)
         {
             //Parse input into List<int>
